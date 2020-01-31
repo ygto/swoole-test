@@ -81,7 +81,7 @@ class Controller
     }
 }
 
-$controller = new Controller($table);
+$controller = new Controller($dispatcher, $table);
 
 $http->on("request", [$controller, 'request']);
 

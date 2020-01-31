@@ -8,7 +8,7 @@ $table->column('value', Swoole\Table::TYPE_STRING, 1024 * 100);
 $table->column('expired_at', Swoole\Table::TYPE_INT);
 $table->create();
 
-$table["num"] = 1;
+$table["num"] = ['key' => 'num', 'value' => 0, 'expired_at' => time()];
 
 class Controller
 {
@@ -21,14 +21,17 @@ class Controller
 
     public function request($request, $response)
     {
-        $num = ++$this->table["num"];
+        $num = $this->table["num"];
+
+        ++$this->table['num']['value'];
+
         $response->header("Access-Control-Allow-Origin", $request->header['origin']);
         $response->header("Access-Control-Expose-Headers", "Auth");
         $response->header("Access-Control-Allow-Credentials", "true");
         $response->header("Content-Type", "application/json");
         $response->header("Serv", "NLE0.9-1");
         $response->status(200);
-        $response->end('<html><body>Lucky number: ' . $num . '</body></html>');
+        $response->end('<html><body>Lucky number: ' . \json_encode($num) . '</body></html>');
     }
 }
 

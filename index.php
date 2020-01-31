@@ -31,15 +31,12 @@ class Controller
         $this->table = $table;
     }
 
+    /**
+     * @param $request \Swoole\Http\Request
+     * @param $response \Swoole\Http\Response
+     */
     public function request($request, $response)
     {
-
-        var_dump([
-            get_class($request),
-            get_class($response),
-        ]);
-
-        /*
         // Fetch method and URI from somewhere
                 $httpMethod = $_SERVER['REQUEST_METHOD'];
                 $uri = $_SERVER['REQUEST_URI'];
@@ -51,20 +48,8 @@ class Controller
                 $uri = rawurldecode($uri);
 
                 $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
-                switch ($routeInfo[0]) {
-                    case FastRoute\Dispatcher::NOT_FOUND:
-                        // ... 404 Not Found
-                        break;
-                    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                        $allowedMethods = $routeInfo[1];
-                        // ... 405 Method Not Allowed
-                        break;
-                    case FastRoute\Dispatcher::FOUND:
-                        $handler = $routeInfo[1];
-                        $vars = $routeInfo[2];
-                        // ... call $handler with $vars
-                        break;
-                }*/
+
+                var_dump($routeInfo);
 
 
         $num = $this->table->get('num');

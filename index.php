@@ -21,7 +21,7 @@ $table->set("num", ['key' => 'num', 'value' => 0, 'expired_at' => time()]);
 $testProcess= new \Swoole\Process(function ($process) use($table){
     while(true){
         echo '.';
-        $this->table->set("num", ['key' => 'num', 'value' => 0, 'expired_at' => time()]);
+        $table->set("num", ['key' => 'num', 'value' => 0, 'expired_at' => time()]);
         sleep(10);
     }
 });

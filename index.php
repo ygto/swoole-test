@@ -22,8 +22,8 @@ class Controller
     public function request($request, $response)
     {
         $num = $this->table["num"];
-
-        ++$this->table['num']['value'];
+        ++$num['value'];
+        $this->table->set("num", $num);
 
         $response->header("Access-Control-Allow-Origin", $request->header['origin']);
         $response->header("Access-Control-Expose-Headers", "Auth");
@@ -31,7 +31,7 @@ class Controller
         $response->header("Content-Type", "application/json");
         $response->header("Serv", "NLE0.9-1");
         $response->status(200);
-        $response->end('<html><body>Lucky number: ' . \json_encode($num) . '</body></html>');
+        $response->end(\json_encode($num));
     }
 }
 

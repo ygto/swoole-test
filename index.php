@@ -61,7 +61,7 @@ class Controller
         $uri = rawurldecode($uri);
 
         $routeInfo = $this->dispatcher->dispatch($serverMethod, $uri);
-        var_dump($routeInfo);
+        //var_dump($routeInfo);
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
                 // ... 404 Not Found

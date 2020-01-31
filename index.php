@@ -8,10 +8,32 @@ $table->column('value', Swoole\Table::TYPE_STRING, 1024 * 100);
 $table->column('expired_at', Swoole\Table::TYPE_INT);
 $table->create();
 
+$table["num"] = 1;
 
-$http->on("request", function ($request, $response) {
+class Controller
+{
+    protected $table;
 
-    $response->end('<html><body>Lucky number: ' . rand(1, 100) . '</body></html>');
-});
+    public function __construct($table)
+    {
+        $this->table = $table;
+    }
+
+    public function request($request, $response)
+    {
+        $num = ++$this->table["num"];
+        $response->header("Access-Control-Allow-Origin", $request->header['origin']);
+        $response->header("Access-Control-Expose-Headers", "Auth");
+        $response->header("Access-Control-Allow-Credentials", "true");
+        $response->header("Content-Type", "application/json");
+        $response->header("Serv", "NLE0.9-1");
+        $response->status(200);
+        $response->end('<html><body>Lucky number: ' . $num . '</body></html>');
+    }
+}
+
+$controller = new Controller($table);
+
+$http->on("request", [$controller, 'request']);
 
 $http->start();

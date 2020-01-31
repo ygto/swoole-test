@@ -14,7 +14,8 @@ class HomeController extends BaseController
         ++$num['value'];
         $this->table->set("num", $num);
 
+        $f = file_get_contents('test.txt');
 
-        return 'hello world!:'.$num['value'];
+        return 'hello world!(' . $f . '):' . $num['value'];
     }
 }

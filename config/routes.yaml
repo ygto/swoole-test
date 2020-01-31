@@ -4,4 +4,4 @@
 
 app_lucky_number:
   path: /test
-  controller: App\Controller\TesetController::test
+  controller: App\Controller\TestController::test

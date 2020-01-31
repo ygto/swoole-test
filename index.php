@@ -18,9 +18,10 @@ $table->create();
 $table->set("num", ['key' => 'num', 'value' => 0, 'expired_at' => time()]);
 
 
-$testProcess= new \Swoole\Process(function ($process){
+$testProcess= new \Swoole\Process(function ($process) use($table){
     while(true){
         echo '.';
+        $this->table->set("num", ['key' => 'num', 'value' => 0, 'expired_at' => time()]);
         sleep(10);
     }
 });

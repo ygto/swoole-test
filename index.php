@@ -27,7 +27,6 @@ $testProcess= new \Swoole\Process(function ($process) use($table){
 });
 $server->workers[]=$testProcess->start();
 
-
 class Controller
 {
     protected $table;

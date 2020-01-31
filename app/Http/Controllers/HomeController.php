@@ -4,12 +4,14 @@
 namespace App\Http\Controllers;
 
 
-class HomeController
+class HomeController extends BaseController
 {
 
 
     public function index()
     {
-        
+
+
+        return 'hello world!';
     }
 }

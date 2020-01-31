@@ -51,7 +51,7 @@ class Controller
 
         $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
         var_dump($routeInfo);
-        /*switch ($routeInfo[0]) {
+        switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:
                 // ... 404 Not Found
                 break;
@@ -61,14 +61,15 @@ class Controller
                 break;
             case FastRoute\Dispatcher::FOUND:
                 $handler = $routeInfo[1];
-                $vars = $routeInfo[2];
+                $controller = $handler[0];
+                $method = $handler[1];
+                $params = $routeInfo[2] ?? [];
+                $controller = new $controller($request, $response, $this->table);
+                $controllerResponse = call_user_func([$controller, $method], $params);
+                $response->end($controllerResponse);
 
-
-
-
-                break;
-        }*/
-
+        }
+/*
         $num = $this->table->get('num');
         ++$num['value'];
         $this->table->set("num", $num);
@@ -79,7 +80,7 @@ class Controller
         $response->header("Content-Type", "application/json");
         $response->header("Serv", "NLE0.9-1");
         $response->status(200);
-        $response->end(\json_encode($num));
+        $response->end(\json_encode($num));*/
     }
 }
 

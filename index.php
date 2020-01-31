@@ -38,7 +38,7 @@ class Controller
     public function request($request, $response)
     {
         // Fetch method and URI from somewhere
-                $httpMethod = $_SERVER['REQUEST_METHOD'];
+                $httpMethod = $request->server['REQUEST_METHOD'];
                 $uri = $_SERVER['REQUEST_URI'];
 
         // Strip query string (?foo=bar) and decode URI

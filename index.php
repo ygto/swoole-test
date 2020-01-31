@@ -38,7 +38,7 @@ class Controller
     public function request($request, $response)
     {
 
-        var_dump($request);
+        //var_dump($request);
         // Fetch method and URI from somewhere
                 $httpMethod = $request->server['request_method'];
                 $uri = $request->server['request_uri'];

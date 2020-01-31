@@ -8,7 +8,7 @@ $table->column('value', Swoole\Table::TYPE_STRING, 1024 * 100);
 $table->column('expired_at', Swoole\Table::TYPE_INT);
 $table->create();
 
-$table["num"] = ['key' => 'num', 'value' => 0, 'expired_at' => time()];
+$table->set("num", ['key' => 'num', 'value' => 0, 'expired_at' => time()]);
 
 class Controller
 {
@@ -21,7 +21,7 @@ class Controller
 
     public function request($request, $response)
     {
-        $num = $this->table["num"];
+        $num = $this->table->get('num');
         ++$num['value'];
         $this->table->set("num", $num);
 

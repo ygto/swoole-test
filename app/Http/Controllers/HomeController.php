@@ -14,7 +14,7 @@ class HomeController extends BaseController
         ++$num['value'];
         $this->table->set("num", $num);
 
-        $f = file_get_contents('../../../../test.txt');
+        $f = file_get_contents('/home/yigit/swoole-test/test.txt');
 
         return 'hello world!(' . $f . '):' . $num['value'];
     }

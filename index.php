@@ -40,8 +40,8 @@ class Controller
 
         var_dump($request);
         // Fetch method and URI from somewhere
-                $httpMethod = $request->server['REQUEST_METHOD'];
-                $uri = $_SERVER['REQUEST_URI'];
+                $httpMethod = $request->server['request_method'];
+                $uri = $request->server['request_uri'];
 
         // Strip query string (?foo=bar) and decode URI
                 if (false !== $pos = strpos($uri, '?')) {

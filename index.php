@@ -1,17 +1,9 @@
 <?php
-$client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_ASYNC);
-$client->on("connect", function(swoole_client $cli) {
-    $cli->send("GET / HTTP/1.1\r\n\r\n");
+$server = new Swoole\Server("127.0.0.1", 9501, SWOOLE_BASE, SWOOLE_SOCK_TCP);
+
+$server->on("request", function($request, $response){
+
+    $response->end('<html><body>Lucky number: ' . rand(1, 100) . '</body></html>');
 });
-$client->on("receive", function(swoole_client $cli, $data){
-    echo "Receive: $data";
-    $cli->send(str_repeat('A', 100)."\n");
-    sleep(1);
-});
-$client->on("error", function(swoole_client $cli){
-    echo "error\n";
-});
-$client->on("close", function(swoole_client $cli){
-    echo "Connection close\n";
-});
-$client->connect('127.0.0.1', 9501);
+
+$server->start();

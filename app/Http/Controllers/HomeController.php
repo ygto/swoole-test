@@ -4,18 +4,17 @@
 namespace App\Http\Controllers;
 
 
-class HomeController extends BaseController
+use App\Models\User;
+
+class HomeController
 {
 
-
-    public function index()
+    public function test()
     {
-        $num = $this->table->get('num');
-        ++$num['value'];
-        $this->table->set("num", $num);
-
-        $f = file_get_contents('/home/yigit/swoole-test/test.txt');
-
-        return 'hello world!(' . $f . '):' . $num['value'];
+        $u = User::first();
+        $user = table('users');
+        $count = $user->get('yigit', 'count');
+        return sprintf('hello %s:(%s)-%s', $u->username, $count,getenv('APP_KEY'));
     }
+
 }

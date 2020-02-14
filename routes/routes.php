@@ -8,3 +8,4 @@ $route->addRoute('GET', '/err', [\App\Http\Controllers\HomeController::class, 'e
 
 
 $route->addRoute('POST', '/seamless', [\App\Http\Controllers\XpressController::class, 'seamless']);
+$route->addRoute('GET', '/seamless', [\App\Http\Controllers\XpressController::class, 'seamless']);

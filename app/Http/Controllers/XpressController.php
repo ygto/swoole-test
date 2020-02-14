@@ -17,7 +17,7 @@ class XpressController
      * @param Request $request
      * @param Response $response
      */
-    public function seamless(Request $request, Response $response)
+    public function seamless( $request,  $response)
     {
         //sleep(1);
         $user = table('users');

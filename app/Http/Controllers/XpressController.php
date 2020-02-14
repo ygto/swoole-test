@@ -4,18 +4,21 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\User;
+
+use Swoole\Http\Request;
 use Swoole\Http\Response;
 
 class XpressController
 {
 
+
     /**
-     * @param $request \Symfony\Component\HttpFoundation\Request
-     * @param $response Response
+     * @param Request $request
+     * @param Response $response
      */
-    public function seamless($request, $response)
+    public function seamless(Request $request, Response $response)
     {
+        $response->status(500);
         $response->end("hello world");
     }
 

@@ -5,6 +5,8 @@ namespace App\Router;
 
 
 use FastRoute\Dispatcher;
+use Swoole\Http\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class Router
 {
@@ -22,6 +24,10 @@ class Router
         $this->dispatcher = $dispatcher;
     }
 
+    /**
+     * @param $request \Swoole\Http\Request
+     * @param $response Response
+     */
     public function request($request, $response)
     {
 
@@ -55,8 +61,9 @@ class Router
                 $method = $handler[1];
                 $params = $routeInfo[2] ?? [];
 
-                $controllerResponse = (string)call_user_func([$controller, $method], $params);
-                $response->end($controllerResponse);
+                $req = new Request((array)$request->get, (array)\json_decode($request->rawContent(), true), [], [], [], []);
+
+                call_user_func([$controller, $method], $req, $response, ...$params);
         }
     }
 

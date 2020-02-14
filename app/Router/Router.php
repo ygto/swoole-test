@@ -47,12 +47,14 @@ class Router
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 // ... 404 Not Found
+                $response->status(404);
                 $response->end('404.');
 
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $routeInfo[1];
                 // ... 405 Method Not Allowed
+            $response->status(404);
                 $response->end('404');
                 break;
             case Dispatcher::FOUND:

@@ -13,7 +13,7 @@ class TestWorker implements WorkerInterface
         $user->set('yigit', ['id' => 1, 'name' => 'yigit', 'count' => 0]);
         while (true) {
             sleep(1);
-            echo '.';
+            //echo '.';
             $c = $user->get('yigit', 'count');
             $user->set('yigit', ['count' => $c + 1]);
         }

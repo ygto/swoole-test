@@ -19,10 +19,11 @@ class XpressController
      */
     public function seamless(Request $request, Response $response)
     {
-        sleep(1);
+        //sleep(1);
         $user = table('users');
         $count = $user->get('yigit', 'count');
         $response->end("hello world:".$count);
+        echo $count."\n";
     }
 
 }

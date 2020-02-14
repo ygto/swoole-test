@@ -11,15 +11,16 @@ return [
         'host' => '127.0.0.1',
         'port' => '9501',
         'workers' => [
-            \App\Workers\TestWorker::class
+            \App\Workers\TestWorker::class,
+            //\App\Workers\LogMessageConsumer::class,
         ],
         'settings' => [
             'open_http2_protocol' => true, // Enable HTTP2 protocol
-            'worker_num' => intval(shell_exec("grep -c processor /proc/cpuinfo")) / 2 - 1,
+            //'worker_num' => intval(shell_exec("grep -c processor /proc/cpuinfo")) / 2 - 1,
             'open_cpu_affinity' => true,
             'heartbeat_check_interval' => 60,
             'heartbeat_idle_time' => 120,
-            'dispatch_mode' => 2,
+            //'dispatch_mode' => 2,
             'daemonize' => false, // For development purposes (only)
             'log_level' => 0
         ]

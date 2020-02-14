@@ -26,3 +26,8 @@ function logger($message)
     global $log;
     $log->info($message);
 }
+
+function tick($ms, $closure, ...$params)
+{
+    return \Swoole\Timer::tick($ms, $closure, ...$params);
+}

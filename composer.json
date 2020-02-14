@@ -3,7 +3,8 @@
     "nikic/fast-route": "^1.3",
     "swoole/ide-helper": "@dev",
     "illuminate/database": "^6.15",
-    "vlucas/phpdotenv": "^4.1"
+    "vlucas/phpdotenv": "^4.1",
+    "filp/whoops": "^2.7"
   },
   "autoload": {
     "psr-4": {
@@ -12,5 +13,8 @@
     "files": [
       "app/helpers.php"
     ]
+  },
+  "require-dev": {
+    "kwn/php-rdkafka-stubs": "^2.0"
   }
 }

@@ -35,7 +35,8 @@ class SwooleServiceProvider extends ServiceProvider
                 $worker->handle($process);
             });
 
-            $this->server->workers[] = $process->start();
+            $this->server->addProcess($process);
+            $this->server->workers[] = $process;
         }
         $this->server->start();
     }

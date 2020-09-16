@@ -9,12 +9,19 @@ use App\Models\User;
 class HomeController
 {
 
-    public function test()
+    public function count()
     {
-        $u = User::first();
-        $user = table('users');
-        $count = $user->get('yigit', 'count');
-        return sprintf('hello %s:(%s)-%s', $u->username, $count,getenv('APP_KEY'));
+        $queue = table('queue');
+        $count = $queue->count();
+
+        return sprintf('queue count:%s', $count);
+    }
+
+    public function produce()
+    {
+        $q = table('queue');
+        $t = time();
+        $q->set($t, ['id' => $t, 'name' => \base64_encode(random_bytes(5))]);
     }
 
 }

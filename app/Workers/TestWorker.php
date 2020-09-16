@@ -9,13 +9,10 @@ class TestWorker implements WorkerInterface
 
     public function handle($process)
     {
-        $user = table('users');
-        $user->set('yigit', ['id' => 1, 'name' => 'yigit', 'count' => 0]);
+        $q = table('queue');
         while (true) {
             sleep(1);
-            //echo '.';
-            $c = $user->get('yigit', 'count');
-            $user->set('yigit', ['count' => $c + 1]);
+            $q->set(time(), ['id' => 1, 'name' => 'yigit', 'count' => 0]);
         }
         // TODO: Implement handle() method.
     }

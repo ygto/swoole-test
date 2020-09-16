@@ -65,7 +65,10 @@ class Router
 
                 $req = new Request((array)$request->get, (array)\json_decode($request->rawContent(), true), [], [], [], []);
 
-                call_user_func([$controller, $method], $req, $response, ...$params);
+                $resp = call_user_func([$controller, $method], $req, $response, ...$params);
+                if ($resp) {
+                    $response->end($resp);
+                }
         }
     }
 

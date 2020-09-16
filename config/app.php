@@ -20,7 +20,7 @@ return [
             'open_cpu_affinity' => true,
             'heartbeat_check_interval' => 60,
             'heartbeat_idle_time' => 120,
-            //'dispatch_mode' => 2,
+            'dispatch_mode' => 2,
             'daemonize' => false, // For development purposes (only)
             'log_level' => 0
         ]
@@ -50,6 +50,19 @@ return [
                 ], [
                     'name' => 'count',
                     'type' => Swoole\Table::TYPE_INT,
+                ]
+            ]
+        ],
+        'queue' => [
+            'size' => 32,
+            'fields' => [
+                [
+                    'name' => 'id',
+                    'type' => Swoole\Table::TYPE_INT,
+                ], [
+                    'name' => 'name',
+                    'type' => Swoole\Table::TYPE_STRING,
+                    'size' => 32
                 ]
             ]
         ],
